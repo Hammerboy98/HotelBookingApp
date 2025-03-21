@@ -1,0 +1,61 @@
+﻿@model HotelBookingApp.Models.Prenotazione
+
+@{
+    ViewData["Title"] = "Aggiungi Prenotazione";
+}
+
+<h1>Aggiungi Prenotazione</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="ClienteId" class="control-label"></label>
+        <select asp-for="ClienteId" class="form-control">
+            @if (ViewData["Clienti"] != null)
+            {
+                foreach (var cliente in ViewData["Clienti"] as List<HotelBookingApp.Models.Cliente>)
+                {
+                    <option value="@cliente.Id">@cliente.Nome @cliente.Cognome</option>
+                }
+            }
+            else
+            {
+                <option value="">Nessun cliente disponibile</option>
+            }
+        </select>
+        <span asp-validation-for="ClienteId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CameraId" class="control-label"></label>
+        <select asp-for="CameraId" class="form-control">
+            @if (ViewData["Camere"] != null)
+            {
+                foreach (var camera in ViewData["Camere"] as List<HotelBookingApp.Models.Camera>)
+                {
+                    <option value="@camera.CameraId">@camera.Tipo - @camera.Prezzo €</option>
+                }
+            }
+            else
+            {
+                <option value="">Nessuna camera disponibile</option>
+            }
+        </select>
+        <span asp-validation-for="CameraId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataInizio" class="control-label"></label>
+        <input asp-for="DataInizio" class="form-control" type="date" />
+        <span asp-validation-for="DataInizio" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataFine" class="control-label"></label>
+        <input asp-for="DataFine" class="form-control" type="date" />
+        <span asp-validation-for="DataFine" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salva</button>
+</form>
+
+<a href="@Url.Action("Index", "Prenotazioni")" class="btn btn-secondary">Annulla</a>

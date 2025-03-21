@@ -1,0 +1,20 @@
+﻿@model HotelBookingApp.Models.Cliente
+
+@{
+    ViewData["Title"] = "Elimina Cliente";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3>Sei sicuro di voler eliminare questo cliente?</h3>
+<div>
+    <h4>@Model.Nome @Model.Cognome</h4>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Telefono:</strong> @Model.Telefono</p>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Elimina</button>
+    <a href="@Url.Action("Index", "Client")" class="btn btn-secondary">Annulla</a>
+</form>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<HotelBookingApp.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Lista Clienti";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Client")">Aggiungi Cliente</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Nome)</th>
+            <th>@Html.DisplayNameFor(model => model.Cognome)</th>
+            <th>@Html.DisplayNameFor(model => model.Email)</th>
+            <th>@Html.DisplayNameFor(model => model.Telefono)</th>
+            <th>Azione</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in Model)
+        {
+            <tr>
+                <td>@client.Nome</td>
+                <td>@client.Cognome</td>
+                <td>@client.Email</td>
+                <td>@client.Telefono</td>
+                <td>
+                    
+                    <a href="@Url.Action("Edit", "Client", new { id = client.Id })" class="btn btn-warning">Modifica</a>
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<HotelBookingApp.Models.Prenotazione>
+
+@{
+    ViewData["Title"] = "Gestisci Prenotazioni";
+}
+
+<h1>Gestisci Prenotazioni</h1>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Prenotazioni")">Aggiungi Prenotazione</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Camera</th>
+            <th>Data Inizio</th>
+            <th>Data Fine</th>
+            <th>Stato</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prenotazione in Model)
+        {
+            <tr>
+                <td>@prenotazione.Cliente.Nome @prenotazione.Cliente.Cognome</td>
+                <td>@prenotazione.Camera.Numero</td>
+                <td>@prenotazione.DataInizio.ToShortDateString()</td>
+                <td>@prenotazione.DataFine.ToShortDateString()</td>
+                <td>@prenotazione.Stato</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Prenotazioni", new { id = prenotazione.PrenotazioneId })" class="btn btn-warning">Modifica</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
